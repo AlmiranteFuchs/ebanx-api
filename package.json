@@ -1,0 +1,32 @@
+{
+  "name": "ebanx-api",
+  "version": "1.0.0",
+  "description": "Simple API for ebanx interview",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.ts",
+    "build": "rimraf ./build && tsc",
+    "start": "npm run build && node build/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlmiranteFuchs/ebanx-api.git"
+  },
+  "author": "efi Fuchs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlmiranteFuchs/ebanx-api/issues"
+  },
+  "homepage": "https://github.com/AlmiranteFuchs/ebanx-api#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.4",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "tsc": "^2.0.4",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-router": "^0.0.1"
+  }
+}
