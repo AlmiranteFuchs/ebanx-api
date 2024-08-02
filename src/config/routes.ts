@@ -1,4 +1,6 @@
 import { Router } from 'express';
+import { balance_controller } from '../controller/balance';
+import { event_controller } from '../controller/event';
 
 /**
  * Router Object 
@@ -13,12 +15,15 @@ const router: Router = Router();
  * @param {Response} res
  * @returns {Response}
  */
+router.get('/balance', balance_controller.Balance);
 
-router.get('/balance', (req, res) => {
-});
-
-router.post('/event', (req, res) => {
-});
+/**
+ * POST method route /event
+ * @param {Request} req
+ * @param {Response} res
+ * @returns {Response}
+ */
+router.post('/event', event_controller.Event);
 
 
 export { router };
