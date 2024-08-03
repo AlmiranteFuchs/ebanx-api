@@ -1,6 +1,7 @@
 import bodyParser from 'body-parser';
-import express, { Express, Request, Response } from 'express';
+import express, { Express, Request, Response, Application } from 'express';
 import { router } from "./config/routes";
+import "reflect-metadata";
 
 /*
 * App class
