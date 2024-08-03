@@ -1,13 +1,17 @@
 import { Request, Response } from "express"
-import { TransactionRequestBody } from "../types/req_params";
+import { DepositRequestBody, TransactionRequestBody, TransferRequestBody, WithdrawRequestBody } from "../types/req_params";
+import { Utils } from "../utils/validator";
 
 class EventController {
     public async Event(req: Request, res: Response): Promise<Response> {
         try {
             // Treat request and call services
             const req_body = req.body as TransactionRequestBody;
-
-            // Switch case to handle the different types of transactions
+            
+            
+            if (!this.dispatcher(req_body)) {
+                return res.status(400).send('Invalid request');
+            }
 
 
             return res.status(200).send(req_body);
@@ -16,32 +20,28 @@ class EventController {
         }
     }
 
-    private async validator(transactions_body: TransactionRequestBody): Promise<boolean> {
-        // Check type of transaction
+    private async dispatcher(transactions_body: TransactionRequestBody): Promise<boolean> {
+        // Switch, call the validator and dispatch to service
         switch (transactions_body.type) {
             case 'transfer':
-                // Check if origin and destination are valid
-                if (!transactions_body.origin || !transactions_body.destination) {
-                    return false;
-                }
+                if (Utils.validate(transactions_body as TransferRequestBody)) {
+                    // Call transfer service
+                };
+                return true;
                 break;
             case 'withdraw':
-                // Check if origin is valid
-                if (!transactions_body.origin) {
-                    return false;
-                }
+                if (Utils.validate(transactions_body as WithdrawRequestBody)) {
+                };
+                return true;
                 break;
             case 'deposit':
-                // Check if destination is valid
-                if (!transactions_body.destination) {
-                    return false;
-                }
+                if (Utils.validate(transactions_body as DepositRequestBody)) {
+                };
+                return true;
                 break;
             default:
                 return false;
         }
-
-        return true;
     }
 }
 export const event_controller = new EventController();
