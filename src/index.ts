@@ -1,5 +1,8 @@
 import { ExpressApp } from './app';
 import dotenv from 'dotenv';
+import 'reflect-metadata';
+import { User } from './entity/User';
+import { AppDataSource } from './data-source';
 
 dotenv.config();
 
@@ -15,21 +18,36 @@ app.listen(port, () => {
   console.log(` - Express App Initialized on: http://localhost:${port} - `);
 });
 
-import 'reflect-metadata';
-import { createConnection } from 'typeorm';
-import { User } from './entity/User';
+async function initialize_database() {
+  // Initialize the DataSource
+  await AppDataSource.initialize();
 
-createConnection().then(async connection => {
-  const userRepository = connection.getRepository(User);
+  // Handle SIGINT signal (Ctrl+C), close the connection and exit
+  process.on('SIGINT', async () => {
+    await AppDataSource.destroy();
+    process.exit(0);
+  });
 
-  // Create a new user
-  const user = new User();
-  user.name = 'John Doe';
-  user.email = 'john.doe@example.com';
 
-  await userRepository.save(user);
+  // // Get the User repository
+  // const userRepository = AppDataSource.getRepository(User);
 
-  // Fetch all users
-  const users = await userRepository.find();
-  console.log(users);
-}).catch(error => console.log(error));
+  // // Create a new user
+  // const user = new User();
+  // user.name = 'John Doe';
+  // user.email = 'john.doe@example.com';
+
+  // await userRepository.save(user);
+
+  // // Fetch all users
+  // const users = await userRepository.find();
+  // console.log(users);
+
+}
+
+
+async function main() {
+
+}
+
+main().catch(error => console.log('Error:', error));
