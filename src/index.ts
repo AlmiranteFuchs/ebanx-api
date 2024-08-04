@@ -7,17 +7,6 @@ import { AppDataSource } from './data-source';
 dotenv.config();
 
 
-console.log(" - Project Loaded - ");
-
-// Set the port
-const port: number = parseInt(process.env.PORT as string) || 3000;
-
-// Initialize the express app
-const app = new ExpressApp().server;
-app.listen(port, () => {
-  console.log(` - Express App Initialized on: http://localhost:${port} - `);
-});
-
 async function initialize_database() {
   // Initialize the DataSource
   await AppDataSource.initialize();
@@ -28,26 +17,25 @@ async function initialize_database() {
     process.exit(0);
   });
 
+}
 
-  // // Get the User repository
-  // const userRepository = AppDataSource.getRepository(User);
+async function init_express() {
+  console.log(" - Project Loaded - ");
 
-  // // Create a new user
-  // const user = new User();
-  // user.name = 'John Doe';
-  // user.email = 'john.doe@example.com';
+  // Set the port
+  const port: number = parseInt(process.env.PORT as string) || 3000;
 
-  // await userRepository.save(user);
-
-  // // Fetch all users
-  // const users = await userRepository.find();
-  // console.log(users);
-
+  // Initialize the express app
+  const app = new ExpressApp().server;
+  app.listen(port, () => {
+    console.log(` - Express App Initialized on: http://localhost:${port} - `);
+  });
 }
 
 
 async function main() {
-
+  await initialize_database();
+  await init_express();
 }
 
 main().catch(error => console.log('Error:', error));

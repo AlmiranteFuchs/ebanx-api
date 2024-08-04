@@ -12,9 +12,6 @@ class BalanceController {
                 return res.status(400).send("Invalid ID");
             }
 
-            
-
-
 
             // Implement service to get balance
             return res.status(200).send("Balance");

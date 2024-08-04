@@ -7,6 +7,7 @@ export const AppDataSource = new DataSource({
     database: './database.sqlite',
     entities: [User], // List of entities
     synchronize: true, // Automatically create the database schema
+    migrations: ['src/migration/**/*.ts'], // Path to migration files
     logging: false, // Enable logging of SQL queries
 });
 

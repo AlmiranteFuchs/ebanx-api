@@ -10,5 +10,5 @@ export class User {
   name!: string;
 
   @Column()
-  email!: string;
+  money!: number;
 }

@@ -7,7 +7,7 @@
       "dev": "nodemon src/index.ts",
       "build": "rimraf ./build && tsc",
       "start": "ts-node src/index.ts",
-      "typeorm": "typeorm-ts-node-commonjs"
+      "migrations:run": "npx typeorm-ts-node-commonjs -d ./src/data-source.ts migration:run"
    },
    "repository": {
       "type": "git",

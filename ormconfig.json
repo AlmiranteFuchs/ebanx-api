@@ -4,5 +4,9 @@
     "entities": [
         "src/entity/*.ts"
     ],
-    "synchronize": true
+    "synchronize": true,
+    "migrations": ["src/migration/**/*.ts"],
+    "cli": {
+        "migrationsDir": "src/migration"
+    }
 }
