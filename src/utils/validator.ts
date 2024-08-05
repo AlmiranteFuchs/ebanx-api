@@ -23,17 +23,17 @@ export class Utils {
 
     private static validateTransfer(request: TransferRequestBody): boolean {
         return typeof request.origin === 'string' &&
-               typeof request.destination === 'string' &&
-               typeof request.amount === 'number' && request.amount > 0;
+            typeof request.destination === 'string' &&
+            typeof request.amount === 'number' && request.amount >= 0;
     }
 
     private static validateWithdraw(request: WithdrawRequestBody): boolean {
         return typeof request.origin === 'string' &&
-               typeof request.amount === 'number' && request.amount > 0;
+            typeof request.amount === 'number' && request.amount >= 0;
     }
 
     private static validateDeposit(request: DepositRequestBody): boolean {
         return typeof request.destination === 'string' &&
-               typeof request.amount === 'number' && request.amount > 0;
+            typeof request.amount === 'number' && request.amount >= 0;
     }
 }
