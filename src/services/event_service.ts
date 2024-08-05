@@ -34,8 +34,25 @@ export class EventService {
             });
 
             // Check if user exists
-            if (!user_from || !user_to) {
+            if (!user_from) {
                 return { type: "error", reason: DispatcherResponseReason.NotFound };
+            }
+
+            // Check if user exists
+            if (!user_to) {
+                // We should create a new user
+                user_to = new User();
+                user_to.id = parseInt(transfer.destination);
+                user_to.name = "New User"; // Not important for this case
+                user_to.money = 0;
+
+                // Save new user
+                user_to = await this.user_repository.save(user_to);
+
+                // Check if user was created
+                if (!user_to) {
+                    return { type: "error", reason: DispatcherResponseReason.ServerError };
+                }
             }
 
             // Check if user has enough money
@@ -122,7 +139,7 @@ export class EventService {
 
             // Check if user exists
             if (!user) {
-                // Deposit is diferent from withdraw, we should create a new user
+                // We should create a new user
                 user = new User();
                 user.id = parseInt(deposit.destination);
                 user.name = "New User"; // Not important for this case

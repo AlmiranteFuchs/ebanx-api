@@ -52,11 +52,11 @@ class EventController {
 
                     const response_data = {
                         "origin": {
-                            "id": user_from.id,
+                            "id": user_from.id.toString(),
                             "balance": user_from.money
                         },
                         "destination": {
-                            "id": user_to.id,
+                            "id": user_to.id.toString(),
                             "balance": user_to.money
                         }
                     };
@@ -79,7 +79,7 @@ class EventController {
 
                     const response_data = {
                         "origin": {
-                            "id": user.id,
+                            "id": user.id.toString(),
                             "balance": user.money
                         }
                     };
@@ -102,7 +102,7 @@ class EventController {
 
                     const response_data = {
                         "destination": {
-                            "id": user.id,
+                            "id": user.id.toString(),
                             "balance": user.money
                         }
                     };
