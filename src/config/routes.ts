@@ -16,7 +16,7 @@ const router: Router = Router();
  * @param {Response} res
  * @returns {Response}
  */
-router.get('/balance', balance_controller.Balance);
+router.get('/balance', balance_controller.Balance.bind(balance_controller));
 
 /**
  * POST method route /event
@@ -24,7 +24,7 @@ router.get('/balance', balance_controller.Balance);
  * @param {Response} res
  * @returns {Response}
  */
-router.post('/event', event_controller.Event);
+router.post('/event', event_controller.Event.bind(event_controller));
 
 /**
  * POST method route /reset
@@ -32,7 +32,7 @@ router.post('/event', event_controller.Event);
  * @param {Response} res
  * @returns {Response}
  */
-router.post('/reset', reset_controller.Reset);
+router.post('/reset', reset_controller.Reset.bind(reset_controller));
 
 
 export { router };
