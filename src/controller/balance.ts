@@ -1,4 +1,5 @@
 import { Request, Response } from "express"
+import { balance_service } from "../services/balance_service";
 
 
 class BalanceController {
@@ -13,8 +14,14 @@ class BalanceController {
             }
 
 
-            // Implement service to get balance
-            return res.status(200).send("Balance");
+            // Service call
+            const balance: Number = await balance_service.get_balance(account_id);
+
+            if (balance === -1) {
+                return res.status(404).send('0');
+            }
+
+            return res.status(200).send(balance.toString());
 
         } catch (error) {
             return res.status(500);
