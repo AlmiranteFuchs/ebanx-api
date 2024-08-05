@@ -19,10 +19,10 @@ export class ResetService {
             await AppDataSource.query(`DELETE FROM sqlite_sequence WHERE name = 'user'`);
 
             // Insert a new user
-            await AppDataSource.query(`
-                INSERT INTO user (id, name, money) VALUES
-                (300, 'Efi', 0)
-            `);
+            // await AppDataSource.query(`
+            //     INSERT INTO user (id, name, money) VALUES
+            //     (300, 'Efi', 0)
+            // `);
 
             // Log the reset
             console.log(" - Database reset - ");

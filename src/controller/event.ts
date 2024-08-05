@@ -29,7 +29,7 @@ class EventController {
 
             const response_data = response.data as object;
 
-            return res.status(200).send(response_data);
+            return res.status(201).send(response_data);
         } catch (error) {
             return res.status(500).send('Server error');
         }
