@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { reset_service } from "../services/reset_service";
+import { Reset_service } from "../services/reset_service";
 
 
 class ResetController {
@@ -7,7 +7,7 @@ class ResetController {
         try {
             // Calls the reset service
             // await promise
-            const reseted: Boolean = await reset_service.Reset();
+            const reseted: Boolean = await Reset_service.Reset();
 
             // If reseted, return 200
             if (reseted) {

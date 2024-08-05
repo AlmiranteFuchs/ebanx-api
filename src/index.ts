@@ -17,10 +17,12 @@ async function initialize_database() {
     process.exit(0);
   });
 
+  console.log(" - Database Initialized - ");
+
+
 }
 
 async function init_express() {
-  console.log(" - Project Loaded - ");
 
   // Set the port
   const port: number = parseInt(process.env.PORT as string) || 3000;
@@ -36,6 +38,7 @@ async function init_express() {
 async function main() {
   await initialize_database();
   await init_express();
+  console.log(" - Project Loaded - ");
 }
 
 main().catch(error => console.log('Error:', error));

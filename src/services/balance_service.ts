@@ -4,7 +4,7 @@ import { AppDataSource } from "../data-source";
 import { User } from "../entity/User";
 
 /**
- * ResetService class
+ * BalanceService class
  */
 export class BalanceService {
 
@@ -15,11 +15,11 @@ export class BalanceService {
     }
 
     /**
-     * Reset the database
+     * Gets the balance of a user
      * @returns {Promise<boolean>}
      */
 
-    public async get_balance(user_id: number): Promise<number> {
+    public async GetBalance(user_id: number): Promise<number> {
         try {
             const user = await this.user_repository.findOneBy({ id: user_id });
 

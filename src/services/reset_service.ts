@@ -34,4 +34,4 @@ export class ResetService {
     }
 }
 
-export const reset_service = new ResetService();
+export const Reset_service = new ResetService();

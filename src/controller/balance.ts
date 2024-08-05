@@ -15,7 +15,7 @@ class BalanceController {
 
 
             // Service call
-            const balance: Number = await balance_service.get_balance(account_id);
+            const balance: Number = await balance_service.GetBalance(account_id);
 
             if (balance === -1) {
                 return res.status(404).send('0');

@@ -21,3 +21,15 @@ export type TransactionRequestBody =
     | TransferRequestBody
     | WithdrawRequestBody
     | DepositRequestBody;
+
+
+export type DispatcherResponse =
+    | { type: 'success'; data: object }
+    | { type: 'error'; reason: DispatcherResponseReason }
+
+export enum DispatcherResponseReason {
+    MalformedRequest = 'malformed_request',
+    ServerError = 'server_error',
+    Prohibited = 'prohibited',
+    NotFound = 'not_found'
+}
